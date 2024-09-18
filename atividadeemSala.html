@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            margin: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Calculadora Simples</h2>
+
+    <input type="number" id="numero1" placeholder="Digite o 1º número">
+    <input type="number" id="numero2" placeholder="Digite o 2º número"><br>
+
+    <button onclick="calcular('somar')">+</button>
+    <button onclick="calcular('subtrair')">-</button>
+    <button onclick="calcular('multiplicar')">*</button>
+    <button onclick="calcular('dividir')">/</button>
+    <button onclick="limparCampos()">C</button>
+
+    <div class="resultado" id="resultado"></div>
+
+    <script>
+        
+        function calcular(operacao) {
+            let numero1 = parseFloat(document.getElementById("numero1").value);
+            let numero2 = parseFloat(document.getElementById("numero2").value);
+            let resultado;
+
+            if (isNaN(numero1) || isNaN(numero2)) {
+                document.getElementById("resultado").innerText = "Por favor, insira números válidos.";
+                return;
+            }
+
+            switch (operacao) {
+                case 'somar':
+                    resultado = numero1 + numero2;
+                    break;
+                case 'subtrair':
+                    resultado = numero1 - numero2;
+                    break;
+                case 'multiplicar':
+                    resultado = numero1 * numero2;
+                    break;
+                case 'dividir':
+                    if (numero2 === 0) {
+                        document.getElementById("resultado").innerText = "Erro: Divisão por zero!";
+                        return;
+                    }
+                    resultado = numero1 / numero2;
+                    break;
+                default:
+                    resultado = "Operação inválida";
+            }
+
+            
+            document.getElementById("resultado").innerText = "Resultado: " + resultado;
+        }
+
+        function limparCampos() {
+            document.getElementById("numero1").value = "";
+            document.getElementById("numero2").value = "";
+            document.getElementById("resultado").innerText = "";
+        }
+    </script>
+
+</body>
+</html>
